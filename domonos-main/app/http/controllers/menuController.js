@@ -22,12 +22,12 @@ function menuController() {
         const shuffled = menus.pizza.sort(() => 0.5 - Math.random());
 
         const modified = menus.pizza.map(item => {
-          if (item.menuType === 'pizza') {
+          // if (item.menuType === 'pizza') {
             // console.log(item);
              let price = item.options.prices.filter(p => p.size === 'regular')[0].crusts[0] ;
              console.log(price);
             item['price'] = price;
-          }
+          // }
           return item;
         });
 
