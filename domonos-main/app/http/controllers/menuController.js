@@ -8,25 +8,28 @@ function menuController() {
 
         const data = await Menu.find();
         const allMenus = data.map(menu => menu.toObject());
-
+        // console.log(data);
         const menus = allMenus.reduce((menus, item) => {
           const group = (menus[item.menuType] || []);
           group.push(item);
           menus[item.menuType] = group;
           return menus;
         }, {});
-
+        // console.log(allMenus);
+        // console.log(menus);
         const veg = [],
           nonveg = [];
-        // const shuffled = menus.pizza.sort(() => 0.5 - Math.random());
+        const shuffled = menus.pizza.sort(() => 0.5 - Math.random());
 
-        // const modified = menus.pizza.map(item => {
-        //   if (item.menuType === 'pizza') {
-        //     let price = item.options.prices.filter(p => p.size === 'regular')[0].crusts[0];
-        //     item['price'] = price
-        //   }
-        //   return item;
-        // });
+        const modified = menus.pizza.map(item => {
+          if (item.menuType === 'pizza') {
+            // console.log(item);
+             let price = item.options.prices.filter(p => p.size === 'regular')[0].crusts[0] ;
+             console.log(price);
+            item['price'] = price;
+          }
+          return item;
+        });
 
         modified.forEach(item => {
           if (item.foodType === 'veg') {
@@ -34,7 +37,8 @@ function menuController() {
           } else {
             nonveg.push(item);
           }
-        });
+        }
+        );
 
 
         // res.json(modified)

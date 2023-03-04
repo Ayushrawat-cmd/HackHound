@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 // app.set("resources/views","views");
 
 // DB Connection
-const connectionString ='mongodb+srv://admin-ayush:ayush123@cluster0.itvnq.mongodb.net/?retryWrites=true&w=majority';
+const connectionString ='mongodb+srv://admin-ayush:ayush123@cluster0.itvnq.mongodb.net/hackhound?retryWrites=true&w=majority';
 mongoose.connect(
   connectionString, {
     useNewUrlParser: true,
