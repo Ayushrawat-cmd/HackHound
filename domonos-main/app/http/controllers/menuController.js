@@ -19,13 +19,13 @@ function menuController() {
         // console.log(menus);
         const veg = [],
           nonveg = [];
-        const shuffled = menus.pizza.sort(() => 0.5 - Math.random());
+        const shuffled = menus.Pizza.sort(() => 0.5 - Math.random());
 
-        const modified = menus.pizza.map(item => {
+        const modified = menus.Pizza.map(item => {
           // if (item.menuType === 'pizza') {
-            // console.log(item);
+            console.log(item);
              let price = item.options.prices.filter(p => p.size === 'regular')[0].crusts[0] ;
-             console.log(price);
+            //  console.log(price);
             item['price'] = price;
           // }
           return item;

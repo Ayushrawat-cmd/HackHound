@@ -10,7 +10,7 @@ function orderController(params) {
                     'createdAt': -1
                 }
             });
-            // console.log(orders);
+            console.log(orders);
             res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
             res.render('customer/orders', {
                 orders
@@ -33,6 +33,7 @@ function orderController(params) {
         },
         store(req, res) {
             const addresses = req.user.addresses;
+            // console.log(address);
             if (addresses.length === 0) {
                 req.flash('error', 'no address found');
                 return res.redirect('/cart');
