@@ -23,7 +23,7 @@ function menuController() {
 
         const modified = menus.Pizza.map(item => {
           // if (item.menuType === 'pizza') {
-            console.log(item);
+            // console.log(item);
              let price = item.options.prices.filter(p => p.size === 'regular')[0].crusts[0] ;
             //  console.log(price);
             item['price'] = price;

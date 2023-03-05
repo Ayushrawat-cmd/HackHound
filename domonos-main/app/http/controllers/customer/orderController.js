@@ -69,6 +69,14 @@ function orderController(params) {
                 }, (err, data) => {
 
                     req.flash('success', 'Order placed successfully');
+                    const id = order._id.toString();
+                    const accountSid = 'AC4163f402211bbf5069d416ed234e5fcc';
+                    const authToken = '9cb5d53b118dc508757a534d0ddf4dc6';
+                    const client = require('twilio')(accountSid, authToken);
+                    // console.log(id);
+                    client.messages
+                    .create({ body: `Your order is placed! Order id is:- ORDERID${id.substring(0, 3) + id.toString().substring(id.length - 2, id.length)}`, from: "+15672921970", to: '+917007658698' })
+                    .then(message => console.log(message.sid));
                     delete req.session.cart;
 
                     // Emit event
