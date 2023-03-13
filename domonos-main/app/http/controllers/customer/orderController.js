@@ -10,7 +10,7 @@ function orderController(params) {
                     'createdAt': -1
                 }
             });
-            // console.log(orders);
+            console.log(orders);
             res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
             res.render('customer/orders', {
                 orders
@@ -33,6 +33,7 @@ function orderController(params) {
         },
         store(req, res) {
             const addresses = req.user.addresses;
+            // console.log(address);
             if (addresses.length === 0) {
                 req.flash('error', 'no address found');
                 return res.redirect('/cart');
@@ -68,6 +69,14 @@ function orderController(params) {
                 }, (err, data) => {
 
                     req.flash('success', 'Order placed successfully');
+                    const id = order._id.toString();
+                    const accountSid = 'AC4163f402211bbf5069d416ed234e5fcc';
+                    const authToken = '9cb5d53b118dc508757a534d0ddf4dc6';
+                    const client = require('twilio')(accountSid, authToken);
+                    // console.log(id);
+                    client.messages
+                    .create({ body: `Your order is placed! Order id is:- ORDERID${id.substring(0, 3) + id.toString().substring(id.length - 2, id.length)}`, from: "+15672921970", to: '+917007658698' })
+                    .then(message => console.log(message.sid));
                     delete req.session.cart;
 
                     // Emit event
